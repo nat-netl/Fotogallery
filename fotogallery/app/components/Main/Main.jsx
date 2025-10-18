@@ -9,7 +9,7 @@ const Main = () => {
         <h1 className="section-title">Добро пожаловать на проект галлереи</h1>
         <div className="button-group">
           <Link href="/gallery" className="gallery-button">
-            К галлереи
+            К галлерее
           </Link>
           <Link href="/form" className="form-button">
             Оставить заявку
