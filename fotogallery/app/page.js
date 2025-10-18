@@ -1,5 +1,5 @@
-import Fotos from "./components/Fotos";
-import Main from "./components/Main";
+import Fotos from "./components/Fotos/Fotos";
+import Main from "./components/Main/Main";
 
 export default function Home() {
   return (

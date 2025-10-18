@@ -1,14 +1,15 @@
 import Link from 'next/link';
+import "./style.css"
 
 const Header = () => {
   return (
-    <header className="bg-gray-800 text-white p-4">
-      <div className="container mx-auto flex justify-between items-center">
-        <Link href="/" className="text-xl font-bold">
+    <header className="header">
+      <div className="header-container">
+        <Link href="/" className="header-title">
           Фото галлерея
         </Link>
         <nav>
-          <ul className="flex space-x-4">
+          <ul className="header-nav">
             <li>
               <Link href="/">Главная</Link>
             </li>
