@@ -25,7 +25,6 @@ const Contact = () => {
         <div className="container">
           <div className="contact-info-grid">
             <div className="contact-card">
-              <div className="contact-icon-wrapper">Icon</div>
               <h3 className="contact-title">Почта</h3>
               <p className="contact-description">Lorem</p>
               <a href="mailto:hello@mail.ru" className="contact-link">
@@ -33,7 +32,6 @@ const Contact = () => {
               </a>
             </div>
             <div className="contact-card">
-              <div className="contact-icon-wrapper">Icon</div>
               <h3 className="contact-title">Позвоните нам</h3>
               <p className="contact-description">Lorem</p>
               <a href="tel:+99999999" className="contact-link">
@@ -41,7 +39,6 @@ const Contact = () => {
               </a>
             </div>
             <div className="contact-card">
-              <div className="contact-icon-wrapper">Icon</div>
               <h3 className="contact-title">Посетите нас</h3>
               <p className="contact-description">Lorem</p>
               <p className="contact-address">

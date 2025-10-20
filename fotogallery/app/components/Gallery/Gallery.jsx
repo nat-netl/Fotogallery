@@ -27,7 +27,7 @@ const Gallery = () => {
     <>
       <section className="gallery-section">
         <div className="container">
-          <h1 className="gallery-title">Фото галлерея</h1>
+          <h1 className="gallery-title">Галерея</h1>
         </div>
 
         <section className="image-section">

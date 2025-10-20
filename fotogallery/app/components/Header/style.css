@@ -31,3 +31,17 @@
   color: white;
   text-decoration: none;
 }
+
+.icon {
+  display: none;
+}
+
+@media (max-width: 720px) {
+  .header-nav {
+    display: none;
+  }
+
+  .icon {
+    display: flex !important;
+  }
+}

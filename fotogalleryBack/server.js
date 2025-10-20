@@ -1,5 +1,8 @@
 const express = require('express');
 const { Pool } = require('pg'); 
+const AppController = require('./controllers/app-controller');
+const MessageService = require('./services/message-service');
+const PhotoService = require('./services/photo-service');
 const cors = require('cors');
 
 const app = express();
@@ -10,46 +13,21 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const pool = new Pool({
+const dbConfig = {
   user: 'postgres',        
   host: 'localhost',          
   database: 'Gallery',   
   password: 'Filosof', 
   port: 5433,                 
-});
+};
 
-app.post('/messages', async (req, res) => {
-  const { name, email, subject, message } = req.body;
+const messageService = new MessageService(dbConfig);
+const photoService = new PhotoService(dbConfig);
 
-  if (!name || !email || !subject || !message) {
-    return res.status(400).send('All fields are required.');
-  }
+const appController = new AppController(messageService, photoService);
 
-  try {
-    const client = await pool.connect();
-    const result = await client.query(
-      'INSERT INTO messages (name, email, subject, message) VALUES ($1, $2, $3, $4) RETURNING *',
-      [name, email, subject, message]
-    );
-    client.release();
-    res.status(201).json(result.rows[0]);
-  } catch (err) {
-    console.error('Error executing query', err.stack);
-    res.status(500).send('Error creating message.');
-  }
-});
-
-app.get('/photos', async (req, res) => {
-  try {
-    const client = await pool.connect();
-    const result = await client.query('SELECT * FROM photos');
-    client.release();
-    res.json(result.rows);
-  } catch (err) {
-    console.error('Error executing query', err.stack);
-    res.status(500).send('Error fetching photos');
-  }
-});
+app.post('/messages', appController.createMessage);
+app.get('/photos', appController.getAllPhotos);
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
@@ -57,7 +35,8 @@ app.listen(port, () => {
 
 process.on('SIGINT', async () => {
   console.log('SIGINT signal received: closing http server');
-  await pool.end(); 
+  await messageService.pool.end();
+  await photoService.pool.end();
   console.log('PostgreSQL pool closed');
   process.exit(0);
 });

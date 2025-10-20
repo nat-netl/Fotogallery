@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import "./style.css"
+import Image from 'next/image';
+import Icon from '../../icons/menu-button_icon-icons.com_72989.svg'
 
 const Header = () => {
   return (
@@ -25,7 +27,9 @@ const Header = () => {
             <li>
               <Link href="/form">Обратная связь</Link>
             </li>
+
           </ul>
+            <Image className='icon' src={Icon} width={20} height={20} />
         </nav>
       </div>
     </header>
